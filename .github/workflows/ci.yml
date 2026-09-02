@@ -20,13 +20,7 @@ jobs:
         with:
           go-version: "1.23"
           cache-dependency-path: backend/go.mod
-      - run: go mod tidy
-      - name: Export generated checksums
-        run: |
-          echo "FACTORYOPS_GO_SUM_BEGIN"
-          base64 -w0 go.sum
-          echo
-          echo "FACTORYOPS_GO_SUM_END"
+      - run: go mod download
       - run: go test -race ./...
       - run: go vet ./...
 
